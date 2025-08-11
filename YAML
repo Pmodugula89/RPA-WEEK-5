@@ -48,3 +48,6 @@ jobs:
       with:
         name: synthetic-summary
         path: data/summary.json
+   - name: Test with pytest
+      run: |
+      pytest path/to/your/tests
