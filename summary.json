@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "synthetic": true,
+    "seed": 12345,
+    "generated_at": "2025-08-11T19:35:38.689625Z",
+    "rows": 10000,
+    "assumptions": "Uniform spread across 24h; 98% success; durations lognormal(mean=0.08s)"
+  },
+  "actual_rows": 10000,
+  "success": 9797,
+  "failed": 46,
+  "retry": 157,
+  "avg_duration_ms": 90.04549740000004,
+  "median_duration_ms": 79.579
+}

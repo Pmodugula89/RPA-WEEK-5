@@ -1,0 +1,10 @@
+{
+  "total_rows": 10000,
+  "success_count": 9797,
+  "retry_count": 157,
+  "error_count": 46,
+  "avg_duration_ms": 90.04549740000004,
+  "p95_duration_ms": 179.43,
+  "error_rate_percent": 0.45999999999999996,
+  "retry_rate_percent": 1.5699999999999998
+}
