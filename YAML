@@ -1,0 +1,50 @@
+name: Synthetic Data CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-and-verify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ⬇️ Checkout repository
+      uses: actions/checkout@v3
+
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: 📦 Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt || true  # fallback if no requirements.txt
+        pip install pytest flake8 black
+
+    - name: ✅ Run tests (if any)
+      run: |
+        if [ -d "tests" ]; then
+          pytest tests/
+        else
+          echo "No tests directory found — skipping pytest."
+        fi
+
+    - name: 🧹 Lint with flake8
+      run: flake8 scripts/
+
+    - name: 📏 Check formatting with black
+      run: black --check scripts/
+
+    - name: 🔍 Run synthetic data verification
+      run: |
+        python scripts/verify_synthetic.py
+
+    - name: 📤 Upload summary.json
+      uses: actions/upload-artifact@v3
+      with:
+        name: synthetic-summary
+        path: data/summary.json
